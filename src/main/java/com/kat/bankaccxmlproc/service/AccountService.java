@@ -11,7 +11,7 @@ public interface AccountService {
 
     AccountService checkIfCurrencyBelowZero();
 
-    AccountService filterExpitedAcc();
+    AccountService filterExpiredAcc();
 
     AccountService checkIbanNumber();
 
