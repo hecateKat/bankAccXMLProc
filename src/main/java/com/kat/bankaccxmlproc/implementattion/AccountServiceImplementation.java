@@ -10,7 +10,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-
 public class AccountServiceImplementation implements AccountService {
 
     private List<Account> accounts;
@@ -22,15 +21,15 @@ public class AccountServiceImplementation implements AccountService {
     @Override
     public AccountService checkPlnCurrency() {
 
-        List<Account> list = new ArrayList<>();
+        List<Account> accountsList = new ArrayList<>();
         for (Account account : accounts) {
             if (Optional.ofNullable(account.getCurrency())
                     .orElse("NULL")
                     .equalsIgnoreCase("PLN")) {
-                list.add(account);
+                accountsList.add(account);
             }
         }
-        this.accounts = list;
+        this.accounts = accountsList;
         return this;
     }
 
@@ -51,27 +50,27 @@ public class AccountServiceImplementation implements AccountService {
 
     @Override
     public AccountService filterExpiredAcc() {
-        List<Account> list = new ArrayList<>();
+        List<Account> accountsList = new ArrayList<>();
         for (Account account : accounts) {
             if (Optional.ofNullable(account.getClosingDate())
                     .orElse(LocalDate.now().minusMonths(1))
                     .isAfter(LocalDate.now().minusDays(1))) {
-                list.add(account);
+                accountsList.add(account);
             }
         }
-        this.accounts = list;
+        this.accounts = accountsList;
         return this;
     }
 
     @Override
     public AccountService checkIbanNumber() {
-        List<Account> list = new ArrayList<>();
+        List<Account> accountsList = new ArrayList<>();
         for (Account account : accounts) {
             if (isIbanNumberCorrect(account.getIban())) {
-                list.add(account);
+                accountsList.add(account);
             }
         }
-        this.accounts = list;
+        this.accounts = accountsList;
         return this;
     }
 
@@ -109,12 +108,12 @@ public class AccountServiceImplementation implements AccountService {
 
     @Override
     public List<Account> addAccountsInOrder() {
-        List<Account> accList = new ArrayList<>();
-        accList.addAll(accounts);
-        accList.sort(Comparator
+        List<Account> accountsList = new ArrayList<>();
+        accountsList.addAll(accounts);
+        accountsList.sort(Comparator
                     .comparing(account -> Optional.ofNullable(account.getName())
                                                     .orElse("ŻŻ")
                                                     .toLowerCase()));
-        return accList;
+        return accountsList;
     }
 }

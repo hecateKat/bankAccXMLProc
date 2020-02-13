@@ -33,7 +33,6 @@ public class XmlReader {
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
-
     public void mapCollectionToXmlFile (File file, AccountContainer accountContainer) {
         xmlConfiguration();
         try {
