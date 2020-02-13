@@ -24,7 +24,6 @@ public class XmlReaderTest {
     private File outputFile;
     private List<Account> accounts;
 
-
     @Before
     public void setUp() {
         xmlReader = new XmlReader();

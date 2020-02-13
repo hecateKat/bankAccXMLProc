@@ -1,13 +1,10 @@
 package com.kat.bankaccxmlproc.implementattion;
 
 import com.kat.bankaccxmlproc.entity.Account;
-
 import org.assertj.core.util.Lists;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -223,5 +220,4 @@ public class AccountServiceImplementationTest {
         //then
         Assert.assertNotEquals(expected, result);
     }
-
 }
