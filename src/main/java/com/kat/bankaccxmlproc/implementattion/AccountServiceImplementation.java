@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+
 public class AccountServiceImplementation implements AccountService {
 
     private List<Account> accounts;
@@ -20,17 +21,16 @@ public class AccountServiceImplementation implements AccountService {
 
     @Override
     public AccountService checkPlnCurrency() {
-        List<Account> accountsList = new ArrayList<>();
 
-        for (Account account: accounts) {
+        List<Account> list = new ArrayList<>();
+        for (Account account : accounts) {
             if (Optional.ofNullable(account.getCurrency())
-                        .orElse("null")
-                        .equalsIgnoreCase("pln")) {
-
-                accountsList.add(account);
+                    .orElse("NULL")
+                    .equalsIgnoreCase("PLN")) {
+                list.add(account);
             }
         }
-        this.accounts = accountsList;
+        this.accounts = list;
         return this;
     }
 
@@ -51,16 +51,15 @@ public class AccountServiceImplementation implements AccountService {
 
     @Override
     public AccountService filterExpiredAcc() {
-        List<Account> accountsList = new ArrayList<>();
-        for (Account account: accounts) {
-            Optional.ofNullable(account.getClosingDate())
-                    .orElse(LocalDate.now()
-                            .minusMonths(1))
-                    .isAfter(LocalDate.now()
-                            .minusDays(1));
+        List<Account> list = new ArrayList<>();
+        for (Account account : accounts) {
+            if (Optional.ofNullable(account.getClosingDate())
+                    .orElse(LocalDate.now().minusMonths(1))
+                    .isAfter(LocalDate.now().minusDays(1))) {
+                list.add(account);
+            }
         }
-
-        this.accounts = accountsList;
+        this.accounts = list;
         return this;
     }
 
